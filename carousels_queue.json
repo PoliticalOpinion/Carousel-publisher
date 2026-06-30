@@ -4,13 +4,13 @@
     "image_urls": [],
     "caption": "Most political pages show you the win. This one shows you the whole price too.\n\nEvery claim here gets tagged — Confirmed, Likely, or Flagged. No party gets the soft version, including the ones already covered.\n\nSwipe through, then follow for the next one.",
     "slide_summaries": "This is an introductory carousel about the page format and editorial approach. No time-sensitive factual claims. Covers: 7-slide structure for each leader profile, confidence tagging system (Confirmed/Likely/Flagged), and the page's commitment to political balance.",
-    "approved": false,
-    "verified_ok": false,
+    "approved": true,
+    "verified_ok": true,
     "pending_review": false,
     "flag_reason": null,
     "concerns": [],
     "issue_url": null,
-    "posted_at": null
+    "posted_at": "2026-06-30T00:00:00Z", 
   },
   {
     "name": "C. Joseph Vijay - Tamil Nadu CM",
