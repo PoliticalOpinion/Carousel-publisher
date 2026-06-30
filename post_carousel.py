@@ -1,31 +1,38 @@
 #!/usr/bin/env python3
 """
-post_carousel.py - Smart pre-check edition
---------------------------------------------
+post_carousel.py - Free manual-review edition (no Anthropic API key required)
+--------------------------------------------------------------------------------
 Flow per run:
-  A) verified_ok=true → post immediately (manual override path)
+  A) verified_ok=true → post immediately (this is how you approve, after review)
   B) pending_review=true, verified_ok=false → skip (waiting for you)
-  C) approved, not pending_review, not posted → web-search verify:
-       - CLEAN   → post immediately, no human step needed
-       - FLAGGED → open GitHub Issue, set pending_review=true, stop.
-                   You review, update slides if needed, set verified_ok=true.
-                   Next run posts it.
+  C) approved, not pending_review, not posted → fetch recent headlines via
+     Google News RSS (free, no key), open a GitHub Issue showing the original
+     carousel claims next to the fresh headlines, set pending_review=true, stop.
+
+     You read the Issue, compare headlines to claims yourself, decide.
+     If fine: edit carousels_queue.json → set "verified_ok": true → commit.
+     Next run posts it automatically.
+
+Note: every approved carousel goes through human review under this version —
+there is no automated "clean, skip the human" path, since there's no AI
+judgment step. That's the tradeoff for not using a paid API.
 
 Required secrets:
   IG_ACCESS_TOKEN       long-lived Instagram token
   IG_USER_ID            Instagram-scoped user ID (17841448717123725)
-  ANTHROPIC_API_KEY     for web-search verification
-  MY_GITHUB_TOKEN       for opening Issues (only used when flagging)
-  MY_GITHUB_REPO         e.g. "PoliticalOpinion/Carousel-publisher"
+  MY_GITHUB_TOKEN       for opening Issues
+  MY_GITHUB_REPO        e.g. "PoliticalOpinion/Carousel-publisher"
 """
 
-import json, os, re, sys, time, subprocess, requests
+import json, os, sys, time, subprocess, requests
+import xml.etree.ElementTree as ET
 
 API_HOST    = "https://graph.instagram.com"
 API_VERSION = "v25.0"
 QUEUE_PATH  = os.path.join(os.path.dirname(__file__), "carousels_queue.json")
 POLL_TIMEOUT   = 90
 POLL_INTERVAL  = 5
+MAX_HEADLINES  = 5
 
 
 # ── helpers ──────────────────────────────────────────────────────────────────
@@ -58,7 +65,6 @@ def now_utc():
 def find_next(queue):
     """
     Returns ("post", entry) | ("precheck", entry) | (None, None)
-    verified_ok=true entries go straight to post (manual override).
     """
     precheck_candidate = None
     for entry in queue:
@@ -78,133 +84,93 @@ def find_next(queue):
     return None, None
 
 
-# ── verification via Claude + web search ─────────────────────────────────────
+# ── free headline fetch via Google News RSS (no API key) ─────────────────────
 
-def verify_claims(name, slide_summaries):
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        # No API key — can't verify, flag for manual review to be safe
-        return {
-            "status": "needs_review",
-            "summary": "ANTHROPIC_API_KEY not set — cannot auto-verify.",
-            "concerns": ["Set ANTHROPIC_API_KEY secret to enable auto-verification."]
-        }
-
-    prompt = f"""You are fact-checking an Instagram carousel about {name} for a political journalism page.
-
-Key factual claims in this carousel:
-{slide_summaries}
-
-Search the web for current news about {name} and verify whether these claims are still accurate today.
-
-Focus ONLY on facts that could have changed since the carousel was built:
-- Current office or role held
-- Custody or bail status (for legal cases)
-- Whether ongoing cases have concluded
-- Whether the person has resigned, died, or been removed
-- Election results that may have changed the situation
-
-Do NOT flag: historical facts, editorial framing, stylistic choices, or minor wording differences.
-
-If everything checks out, return clean. Only return needs_review if there is a genuine factual discrepancy that would make the carousel misleading to publish today.
-
-Respond ONLY in this exact JSON format with no text outside it:
-{{
-  "status": "clean",
-  "summary": "All key claims verified accurate as of today.",
-  "concerns": []
-}}
-
-Or if genuine issues found:
-{{
-  "status": "needs_review",
-  "summary": "One or two sentence explanation of what specifically changed.",
-  "concerns": ["Specific concern 1", "Specific concern 2"]
-}}"""
-
+def fetch_headlines(name, max_results=MAX_HEADLINES):
+    """
+    Free, no-key headline fetch. Returns a list of dicts:
+    [{"title": ..., "link": ..., "pubdate": ...}, ...]
+    On failure, returns a single entry explaining the failure so the
+    GitHub Issue still gets opened with useful context.
+    """
+    query = f"{name} India politics"
     try:
-        resp = requests.post(
-            "https://api.anthropic.com/v1/messages",
-            headers={
-                "Content-Type": "application/json",
-                "x-api-key": api_key,
-                "anthropic-version": "2023-06-01",
-            },
-            json={
-                "model": "claude-haiku-4-5-20251001",
-                "max_tokens": 1000,
-                "tools": [{"type": "web_search_20250305", "name": "web_search"}],
-                "messages": [{"role": "user", "content": prompt}],
-            },
-            timeout=60,
+        resp = requests.get(
+            "https://news.google.com/rss/search",
+            params={"q": query, "hl": "en-IN", "gl": "IN", "ceid": "IN:en"},
+            headers={"User-Agent": "Mozilla/5.0"},
+            timeout=15,
         )
         resp.raise_for_status()
-        data = resp.json()
-        full_text = "".join(
-            b.get("text", "") for b in data.get("content", [])
-            if b.get("type") == "text"
-        )
-        match = re.search(r'\{[\s\S]*?\}', full_text)
-        if match:
-            return json.loads(match.group())
+        root = ET.fromstring(resp.content)
+        items = root.findall(".//item")[:max_results]
+        headlines = []
+        for item in items:
+            title_el   = item.find("title")
+            link_el    = item.find("link")
+            pubdate_el = item.find("pubDate")
+            headlines.append({
+                "title":   title_el.text   if title_el   is not None else "(no title)",
+                "link":    link_el.text    if link_el    is not None else "",
+                "pubdate": pubdate_el.text if pubdate_el is not None else "",
+            })
+        return headlines
     except Exception as e:
-        # Verification failed — flag for safety rather than posting blind
-        return {
-            "status": "needs_review",
-            "summary": f"Verification error: {e}",
-            "concerns": ["Manual check required due to API error."]
-        }
-
-    return {
-        "status": "needs_review",
-        "summary": "Could not parse verification result.",
-        "concerns": ["Manual check required."]
-    }
+        return [{
+            "title": f"Headline fetch failed ({e}) — check manually before posting.",
+            "link": "", "pubdate": ""
+        }]
 
 
-# ── GitHub Issue (only opened when flagged) ───────────────────────────────────
+# ── GitHub Issue ──────────────────────────────────────────────────────────────
 
-def open_github_issue(entry, result):
+def open_review_issue(entry, headlines):
     token = os.environ.get("MY_GITHUB_TOKEN")
     repo  = os.environ.get("MY_GITHUB_REPO")
     if not token or not repo:
         print("Warning: MY_GITHUB_TOKEN or MY_GITHUB_REPO not set — skipping Issue.")
         return None
 
-    concerns_md = "\n".join(f"- {c}" for c in result["concerns"])
+    if headlines:
+        headlines_md = "\n".join(
+            f"- [{h['title']}]({h['link']})" + (f" — _{h['pubdate']}_" if h['pubdate'] else "")
+            if h["link"] else f"- {h['title']}"
+            for h in headlines
+        )
+    else:
+        headlines_md = "_No recent headlines found._"
 
-    body = f"""## ⚠️ Carousel flagged before posting
+    body = f"""## Review before posting
 
 **Carousel:** {entry['name']}
 **Checked:** {now_utc()}
 
-### What the verification found
-{result['summary']}
-
-### Specific concerns
-{concerns_md}
-
----
-
-### Claims that were checked
+### What the carousel claims
 {entry.get('slide_summaries', '_No slide_summaries set._')}
+
+### Recent headlines (read these and compare against the claims above)
+{headlines_md}
 
 ---
 
 ### What to do
 
-1. Review the concerns above.
-2. If slides need updating — fix and re-upload the images to the `images/` folder in the repo.
-3. When the carousel is accurate and ready to post:
+1. Skim the headlines above. Look specifically for anything that contradicts
+   the claims — a resignation, a new conviction, a custody change, an election
+   result reversal, anything that means the carousel would be misleading if
+   posted as-is today.
+2. If something's changed — update the carousel images and re-upload them to
+   the `images/` folder before approving.
+3. If everything still holds up:
    - Open `carousels_queue.json` in the repo (pencil icon to edit inline)
    - Find **{entry['name']}**
    - Set `"verified_ok": true`
    - Commit directly to main
 4. The next scheduled Routine run will publish it automatically.
 
-_Note: carousels that pass verification with no concerns are posted automatically without opening an Issue._
-
-_Opened automatically by the Carousel Publisher Routine._"""
+_This page does not use an AI judgment step — you're reading these headlines
+and deciding, not an automated check. Opened automatically by the Carousel
+Publisher Routine._"""
 
     resp = requests.post(
         f"https://api.github.com/repos/{repo}/issues",
@@ -212,10 +178,7 @@ _Opened automatically by the Carousel Publisher Routine._"""
             "Authorization": f"Bearer {token}",
             "Accept": "application/vnd.github+json",
         },
-        json={
-            "title": f"⚠️ Needs update before posting: {entry['name']}",
-            "body": body
-        },
+        json={"title": f"Review before posting: {entry['name']}", "body": body},
         timeout=30,
     )
     resp.raise_for_status()
@@ -313,7 +276,6 @@ def main():
         print("Nothing to do.")
         return 0
 
-    # ── manual override: post directly ───────────────────────────────────────
     if action == "post":
         print(f"Publishing (manually approved): {entry['name']}")
         media_id           = do_post(entry, ig_user_id, token)
@@ -324,35 +286,17 @@ def main():
         print(f"Done. media_id={media_id}")
         return 0
 
-    # ── auto pre-check ────────────────────────────────────────────────────────
     if action == "precheck":
-        print(f"Verifying: {entry['name']}")
-        result = verify_claims(entry["name"], entry.get("slide_summaries", ""))
-        print(f"Result: {result['status']}")
+        print(f"Fetching headlines for: {entry['name']}")
+        headlines = fetch_headlines(entry["name"])
+        issue_url = open_review_issue(entry, headlines)
 
-        if result["status"] == "clean":
-            # No issues found — post immediately, no human step
-            print("Clean. Posting now.")
-            media_id           = do_post(entry, ig_user_id, token)
-            entry["posted_at"] = now_utc()
-            entry["media_id"]  = media_id
-            entry["auto_verified_at"] = now_utc()
-            save_queue(queue)
-            git_commit_push(f"Auto-verified and posted: {entry['name']} ({media_id})")
-            print(f"Done. media_id={media_id}")
-        else:
-            # Issues found — flag for your review, do not post
-            print("Issues found. Opening GitHub Issue for your review.")
-            issue_url              = open_github_issue(entry, result)
-            entry["pending_review"] = True
-            entry["flag_reason"]    = result["summary"]
-            entry["concerns"]       = result.get("concerns", [])
-            if issue_url:
-                entry["issue_url"] = issue_url
-            save_queue(queue)
-            git_commit_push(f"Flagged for review: {entry['name']}")
-            print("Stopped. Fix the carousel, set verified_ok=true, next run will post.")
-
+        entry["pending_review"] = True
+        if issue_url:
+            entry["issue_url"] = issue_url
+        save_queue(queue)
+        git_commit_push(f"Opened review for: {entry['name']}")
+        print("Stopped. Review the headlines in the Issue, then set verified_ok=true.")
         return 0
 
 
