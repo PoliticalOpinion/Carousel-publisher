@@ -86,6 +86,15 @@ def find_next(queue):
 
 # ── free headline fetch via Google News RSS (no API key) ─────────────────────
 
+def extract_search_name(full_name):
+    """
+    Queue entries use 'Name - Role' as the display name (e.g.
+    'C. Joseph Vijay - Tamil Nadu CM'). That full string searches badly —
+    real headlines use just the person's name. Strip the suffix for queries.
+    """
+    return full_name.split(" - ")[0].strip()
+
+
 def fetch_headlines(name, max_results=MAX_HEADLINES):
     """
     Free, no-key headline fetch. Returns a list of dicts:
@@ -93,7 +102,8 @@ def fetch_headlines(name, max_results=MAX_HEADLINES):
     On failure, returns a single entry explaining the failure so the
     GitHub Issue still gets opened with useful context.
     """
-    query = f"{name} India politics"
+    search_name = extract_search_name(name)
+    query = f"{search_name} India politics"
     try:
         resp = requests.get(
             "https://news.google.com/rss/search",
