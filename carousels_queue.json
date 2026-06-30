@@ -10,14 +10,22 @@
     "flag_reason": null,
     "concerns": [],
     "issue_url": null,
-    "posted_at": "2026-06-30T00:00:00Z", 
+    "posted_at": "2026-06-30T00:00:00Z"
   },
   {
     "name": "C. Joseph Vijay - Tamil Nadu CM",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/01_vijay/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/01_vijay/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/01_vijay/03_the_decision.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/01_vijay/04_the_machine.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/01_vijay/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/01_vijay/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/01_vijay/07_why_it_matters.png"
+    ],
+    "caption": "69 films. Zero alliance partners. One election. Vijay just ended 59 years of Dravidian rule in Tamil Nadu — but the story doesn't stop at the result.\n\nSwipe through before this leaves your feed. Which slide surprised you most? 👇\n\n#Vijay #TVK #TamilNaduPolitics #TamilNaduElections2026 #DMK #AIADMK #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Vijay (screen name Thalapathy) is currently serving as Chief Minister of Tamil Nadu after his party TVK won the 2026 state assembly elections, ending 15+ years of DMK/AIADMK dominance. He had a career spanning 69 films before entering politics in 2023. He has no criminal convictions on record. His constituency is listed as Vikravandi.",
-    "approved": false,
+    "approved": true,
     "verified_ok": false,
     "pending_review": false,
     "flag_reason": null,
@@ -27,8 +35,16 @@
   },
   {
     "name": "Suvendu Adhikari - West Bengal Opposition Leader",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/02_suvendu_adhikari/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/02_suvendu_adhikari/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/02_suvendu_adhikari/03_the_decision.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/02_suvendu_adhikari/04_the_first_win.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/02_suvendu_adhikari/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/02_suvendu_adhikari/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/02_suvendu_adhikari/07_why_it_matters.png"
+    ],
+    "caption": "He beat Mamata Banerjee twice. Now a fresh court case could undo it.\n\nThe man who ended 15 years of TMC rule in Bengal — and the part most pages won't post. Save this one.\n\n#SuvenduAdhikari #WestBengalPolitics #MamataBanerjee #TMC #BJP #Nandigram #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Suvendu Adhikari is currently serving as Leader of Opposition in West Bengal, representing BJP. He defeated Mamata Banerjee in Nandigram in the 2021 assembly elections. He was previously a TMC leader who switched to BJP. There is an ongoing court case related to post-poll violence allegations. His Nandigram seat win has been legally contested.",
     "approved": false,
     "verified_ok": false,
@@ -40,8 +56,16 @@
   },
   {
     "name": "V.D. Satheesan - Kerala CM",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/03_vd_satheesan/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/03_vd_satheesan/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/03_vd_satheesan/03_the_pass_over.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/03_vd_satheesan/04_the_decision.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/03_vd_satheesan/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/03_vd_satheesan/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/03_vd_satheesan/07_why_it_matters.png"
+    ],
+    "caption": "Never held a single ministerial post in his life. First government job: Chief Minister.\n\nHe just ended the only Communist government left in any Indian state. Full story — save before it's gone.\n\n#VDSatheesan #KeralaPolitics #UDF #LDF #KeralaElections2026 #CPIM #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "V.D. Satheesan is currently serving as Chief Minister of Kerala after the UDF/Congress-led alliance won the 2026 Kerala state assembly elections, ending the LDF/CPI(M) government. He previously served as Leader of Opposition. He has never held a ministerial post prior to becoming CM. He is from Ernakulam district.",
     "approved": false,
     "verified_ok": false,
@@ -53,8 +77,16 @@
   },
   {
     "name": "Rekha Gupta - Delhi CM",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/04_rekha_gupta/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/04_rekha_gupta/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/04_rekha_gupta/03_the_loss.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/04_rekha_gupta/04_the_rematch.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/04_rekha_gupta/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/04_rekha_gupta/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/04_rekha_gupta/07_why_it_matters.png"
+    ],
+    "caption": "She lost to the same rival in 2015. Beat her in 2025. Then became Delhi's CM — because BJP picked the least flashy name on the list, on purpose.\n\nSwipe to see why that was the smart bet.\n\n#RekhaGupta #DelhiPolitics #BJP #DelhiCM #AAP #DUSU #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Rekha Gupta is currently serving as Chief Minister of Delhi after BJP won the February 2025 Delhi assembly elections. She previously lost to Shazia Ilmi in the 2015 Delhi elections. She was elected from Shalimar Bagh constituency. She was formerly DUSU president. Her declared net worth is publicly available in her election affidavit.",
     "approved": false,
     "verified_ok": false,
@@ -66,9 +98,17 @@
   },
   {
     "name": "Chandrashekhar Azad - MP Nagina",
-    "image_urls": [],
-    "caption": "",
-    "slide_summaries": "Chandrashekhar Azad (Ravan) is currently serving as MP from Nagina, Uttar Pradesh, elected in the 2024 Lok Sabha elections as an independent candidate. He is the founder of the Bhim Army (Azad Samaj Party). He was previously arrested under NSA in 2017 and spent time in Jail. He has built free schools in UP. No active criminal convictions currently blocking his membership.",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/05_chandrashekhar_azad/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/05_chandrashekhar_azad/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/05_chandrashekhar_azad/03_the_setback.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/05_chandrashekhar_azad/04_the_crackdown.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/05_chandrashekhar_azad/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/05_chandrashekhar_azad/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/05_chandrashekhar_azad/07_why_it_matters.png"
+    ],
+    "caption": "He built 350 free schools. The government called him a national security threat.\n\nThe Bhim Army founder's road to Parliament — without a single major party behind him. Save this one.\n\n#ChandrashekharAzad #BhimArmy #Nagina #DalitPolitics #NSA #LokSabha2024 #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
+    "slide_summaries": "Chandrashekhar Azad (Ravan) is currently serving as MP from Nagina, Uttar Pradesh, elected in the 2024 Lok Sabha elections as an independent candidate. He is the founder of the Bhim Army (Azad Samaj Party). He was previously arrested under NSA in 2017 and spent time in jail. He has built free schools in UP. No active criminal convictions currently blocking his membership.",
     "approved": false,
     "verified_ok": false,
     "pending_review": false,
@@ -79,8 +119,16 @@
   },
   {
     "name": "Engineer Rashid - MP Baramulla",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/06_engineer_rashid/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/06_engineer_rashid/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/06_engineer_rashid/03_the_arrest.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/06_engineer_rashid/04_the_campaign.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/06_engineer_rashid/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/06_engineer_rashid/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/06_engineer_rashid/07_why_it_matters.png"
+    ],
+    "caption": "He ran his entire 2024 campaign from a jail cell under UAPA charges. His constituency won him anyway.\n\nThe part most pages skip: the case is still active. Full story inside.\n\n#EngineerRashid #Baramulla #JammuKashmir #UAPA #LokSabha2024 #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Sheikh Abdul Rashid (Engineer Rashid) won the 2024 Lok Sabha election from Baramulla, J&K while in custody under UAPA charges. He was granted bail in September 2024 to campaign and attend Parliament. His UAPA case (alleged terror funding) remains active and ongoing. His current custody/bail status is time-sensitive and must be verified before posting.",
     "approved": false,
     "verified_ok": false,
@@ -92,8 +140,16 @@
   },
   {
     "name": "Pappu Yadav - MP Purnia",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/07_pappu_yadav/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/07_pappu_yadav/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/07_pappu_yadav/03_three_decades.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/07_pappu_yadav/04_the_low_point.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/07_pappu_yadav/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/07_pappu_yadav/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/07_pappu_yadav/07_why_it_matters.png"
+    ],
+    "caption": "Three decades. Six elections. One murder conviction — later overturned.\n\nThe most complicated MP in Bihar, and the part most pages won't touch. Save this.\n\n#PappuYadav #Purnia #BiharPolitics #JanAdhikarParty #LokSabha2024 #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Rajesh Ranjan (Pappu Yadav) is currently serving as MP from Purnia, Bihar, elected in the 2024 Lok Sabha elections as an independent. He has a history of criminal cases including a murder conviction that was later overturned by the Supreme Court. He founded the Jan Adhikar Party. His current party affiliation and any active legal cases should be verified.",
     "approved": false,
     "verified_ok": false,
@@ -105,8 +161,16 @@
   },
   {
     "name": "Umeshbhai Babubhai Patel - MP Daman & Diu",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/08_umesh_patel/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/08_umesh_patel/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/08_umesh_patel/03_his_fathers_setback.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/08_umesh_patel/04_the_risky_pick.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/08_umesh_patel/05_the_surprise_pick.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/08_umesh_patel/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/08_umesh_patel/07_why_it_matters.png"
+    ],
+    "caption": "He runs India's smallest constituency. The ticket felt like a mistake. The result wasn't.\n\nHow BJP picked Daman & Diu's most unlikely winner — and what it says about how tickets actually work.\n\n#UmeshPatel #DamanDiu #BJP #LokSabha2024 #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Umeshbhai Babubhai Patel is currently serving as MP from Daman & Diu, elected in 2024 Lok Sabha elections representing BJP. He ran from one of India's smallest Union Territory constituencies. His professional background and path to the ticket are covered in the carousel.",
     "approved": false,
     "verified_ok": false,
@@ -118,8 +182,16 @@
   },
   {
     "name": "Mohmad Haneefa - MP Ladakh",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/09_mohmad_haneefa/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/09_mohmad_haneefa/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/09_mohmad_haneefa/03_the_setback.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/09_mohmad_haneefa/04_the_target.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/09_mohmad_haneefa/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/09_mohmad_haneefa/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/09_mohmad_haneefa/07_why_it_matters.png"
+    ],
+    "caption": "No party. No money. Running from India's newest, most remote constituency.\n\nHe beat both BJP and Congress in Ladakh — and the part most pages skip is what he had to give up to do it.\n\n#MohmadHaneefa #Ladakh #IndependentMP #LokSabha2024 #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Mohmad Haneefa is currently serving as MP from Ladakh, elected in the 2024 Lok Sabha elections as an independent candidate. Ladakh became a Union Territory in 2019 and this was its second general election as a UT. He defeated candidates from both BJP and Congress. His current party affiliation and parliamentary activity should be verified.",
     "approved": false,
     "verified_ok": false,
@@ -131,8 +203,16 @@
   },
   {
     "name": "Vishal Patil - MP Sangli",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/10_vishal_patil/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/10_vishal_patil/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/10_vishal_patil/03_the_setback.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/10_vishal_patil/04_the_surprise_pick.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/10_vishal_patil/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/10_vishal_patil/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/10_vishal_patil/07_why_it_matters.png"
+    ],
+    "caption": "Congress denied him the ticket. He ran anyway. He won.\n\nThe Sangli story is about what happens when a political dynasty decides the party matters less than the seat.\n\n#VishalPatil #Sangli #Maharashtra #Congress #MVA #LokSabha2024 #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Vishal Patil won the 2024 Lok Sabha election from Sangli, Maharashtra as an independent candidate after Congress denied him the ticket. He later merged support with the MVA alliance. His grandfather and father both held significant political positions in Maharashtra. Verify his current party/alliance status as it was in flux post-election.",
     "approved": false,
     "verified_ok": false,
@@ -144,8 +224,16 @@
   },
   {
     "name": "Pushpendra Saroj - MP Kaushambi",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/11_pushpendra_saroj/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/11_pushpendra_saroj/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/11_pushpendra_saroj/03_the_setback.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/11_pushpendra_saroj/04_the_decision.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/11_pushpendra_saroj/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/11_pushpendra_saroj/06_the_cost.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/11_pushpendra_saroj/07_why_it_matters.png"
+    ],
+    "caption": "He is 25. His constituency has voted for the same family for two generations.\n\nHow SP gave its youngest candidate one of its safest seats — and what that actually means for representation.\n\n#PushpendraSaroj #Kaushambi #SP #SamajwadiParty #DalitPolitics #LokSabha2024 #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Pushpendra Saroj is currently serving as MP from Kaushambi, Uttar Pradesh, elected in the 2024 Lok Sabha elections representing SP (Samajwadi Party). He was among the youngest MPs elected in 2024. He is from a Scheduled Caste background. His age at election and exact birth date have been reported with some variation across sources.",
     "approved": false,
     "verified_ok": false,
@@ -157,8 +245,16 @@
   },
   {
     "name": "Priya Saroj - MP Machhlishahr",
-    "image_urls": [],
-    "caption": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/12_priya_saroj/01_cover.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/12_priya_saroj/02_foundation.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/12_priya_saroj/03_his_fathers_setback.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/12_priya_saroj/04_the_decision.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/12_priya_saroj/05_the_earthquake.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/12_priya_saroj/06_the_bigger_fight.png",
+      "https://raw.githubusercontent.com/PoliticalOpinion/Carousel-publisher/main/images/12_priya_saroj/07_why_it_matters.png"
+    ],
+    "caption": "Supreme Court lawyer. 25 years old. Running on her father's name, in her father's seat.\n\nThe part most pages skip: she is the least wealthy MP in UP, despite three decades of family hold on this constituency.\n\n#PriyaSaroj #Machhlishahr #SP #SamajwadiParty #WomenInPolitics #LokSabha2024 #IndianPolitics #PoliticalCarousel #ConfirmedLikelyFlagged",
     "slide_summaries": "Priya Saroj is currently serving as MP from Machhlishahr, Uttar Pradesh, elected in the 2024 Lok Sabha elections representing SP (Samajwadi Party). She is the daughter of SP leader Tusar Singh Saroj who previously held the same seat. She is a Supreme Court lawyer. She was among the youngest women elected to the 18th Lok Sabha. Her declared net worth is among the lowest of UP's 80 MPs.",
     "approved": false,
     "verified_ok": false,
