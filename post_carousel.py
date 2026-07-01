@@ -196,8 +196,89 @@ Publisher Routine._"""
     print(f"GitHub Issue opened: {url}")
     return url
 
+def pre_publish_freshness_check(entry, headlines):
+    """
+    Opens a GitHub Issue if new headlines have appeared since the entry was approved.
+    Returns True if safe to post, False if paused for re-review.
+    """
+    last_verified = entry.get("last_verified_at")
+    if not last_verified:
+        # No timestamp recorded — can't compare, post safely
+        return True
 
-# ── Instagram publishing ──────────────────────────────────────────────────────
+    from email.utils import parsedate_to_datetime
+    verified_dt = None
+    try:
+        from datetime import datetime, timezone
+        verified_dt = datetime.fromisoformat(last_verified.replace("Z", "+00:00"))
+    except Exception:
+        return True  # Can't parse timestamp, post safely
+
+    new_headlines = []
+    for h in headlines:
+        if not h.get("pubdate"):
+            continue
+        try:
+            from email.utils import parsedate_to_datetime
+            pub_dt = parsedate_to_datetime(h["pubdate"])
+            if pub_dt.tzinfo is None:
+                from datetime import timezone
+                pub_dt = pub_dt.replace(tzinfo=timezone.utc)
+            if pub_dt > verified_dt:
+                new_headlines.append(h)
+        except Exception:
+            continue
+
+    if not new_headlines:
+        return True  # Nothing new since you approved — safe to post
+
+    # New articles found since approval — pause and open Issue
+    print(f"  {len(new_headlines)} new headline(s) since approval. Pausing for re-review.")
+    token = os.environ.get("MY_GITHUB_TOKEN")
+    repo  = os.environ.get("MY_GITHUB_REPO")
+    if token and repo:
+        new_md = "\n".join(
+            f"- [{h['title']}]({h['link']})" + (f" — _{h['pubdate']}_" if h['pubdate'] else "")
+            if h["link"] else f"- {h['title']}"
+            for h in new_headlines
+        )
+        body = f"""## ⚠️ New developments since you approved this carousel
+
+**Carousel:** {entry['name']}
+**You approved at:** {last_verified}
+**New headlines published after that:**
+
+{new_md}
+
+---
+
+Check whether any of these affect the carousel's accuracy.
+
+- If fine: open `carousels_queue.json`, set `"verified_ok": true` again, commit.
+- If updates needed: fix the slides, re-upload, then set `"verified_ok": true`.
+
+_Pre-publish freshness check — opened automatically by the Carousel Publisher Routine._"""
+        try:
+            resp = requests.post(
+                f"https://api.github.com/repos/{repo}/issues",
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "Accept": "application/vnd.github+json",
+                },
+                json={"title": f"⚠️ New news before posting: {entry['name']}", "body": body},
+                timeout=30,
+            )
+            resp.raise_for_status()
+            entry["issue_url"] = resp.json()["html_url"]
+            print(f"  Issue opened: {entry['issue_url']}")
+        except Exception as e:
+            print(f"  Warning: could not open Issue ({e})")
+
+    entry["verified_ok"] = False
+    entry["pending_review"] = True
+    return False
+
+
 
 def check_rate_limit(ig_user_id, token):
     resp = requests.get(
@@ -287,7 +368,15 @@ def main():
         return 0
 
     if action == "post":
-        print(f"Publishing (manually approved): {entry['name']}")
+        print(f"Pre-publish freshness check: {entry['name']}")
+        fresh_headlines = fetch_headlines(entry["name"])
+        safe = pre_publish_freshness_check(entry, fresh_headlines)
+        if not safe:
+            save_queue(queue)
+            git_commit_push(f"Pre-publish pause: new headlines found for {entry['name']}")
+            print("Stopped. New developments found — review the GitHub Issue, re-approve when ready.")
+            return 0
+        print(f"No new headlines since approval. Publishing: {entry['name']}")
         media_id           = do_post(entry, ig_user_id, token)
         entry["posted_at"] = now_utc()
         entry["media_id"]  = media_id
@@ -302,6 +391,7 @@ def main():
         issue_url = open_review_issue(entry, headlines)
 
         entry["pending_review"] = True
+        entry["last_verified_at"] = now_utc()
         if issue_url:
             entry["issue_url"] = issue_url
         save_queue(queue)
